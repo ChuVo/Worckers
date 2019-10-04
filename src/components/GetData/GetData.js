@@ -1,0 +1,26 @@
+const GetData = () => {  
+  let newDate = [];
+
+  fetch('db.json')  
+  .then(  
+    function(response) {  
+      if (response.status !== 200) {  
+        console.log('Looks like there was a problem. Status Code: ' +  
+          response.status);  
+        return;  
+      }
+
+      response.json().then(function(data) {
+        newDate.push(...data);
+      });  
+    }  
+  )  
+  .catch(function(err) {  
+    console.log('Fetch Error :-S', err);  
+  });
+  
+  return newDate;
+};
+
+export default GetData;
+

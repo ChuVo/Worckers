@@ -23,3 +23,32 @@ code {
 .user-image {
   width: 100%;
 }
+
+.selected-worker-fixed {
+  position: fixed;
+}
+
+.table-striped tbody tr {
+  cursor: pointer;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background: rgba(187, 186, 189, 0.31) !important;
+}
+
+.table-striped tbody tr:hover {
+  background: rgba(187, 186, 189, 0.91) !important;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .wrapper-td {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .wrapper-img {
+    display: none;
+  }
+}

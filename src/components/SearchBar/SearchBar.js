@@ -10,7 +10,7 @@ export default class SearchBar extends Component {
   render() {
     return (
       <div className="row justify-content-between">
-        <div className="form-group col-12 col-sm-6 col-md-7">
+        <div className="form-group col-12 col-sm-6 col-md-7 p-0">
           <input 
             type="text" className="form-control"
             placeholder="Search worker by name..."/>
