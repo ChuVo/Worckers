@@ -1,13 +1,15 @@
-import React, {Component} from 'react';
+import React from 'react';
 import SortByRole from '../SortByRole/SortByRole';
 import SortByStatus from '../SortByStatus/SortByStatus';
 
-export default class SearchBar extends Component {
+class SearchBar extends React.Component {
+
   changeValue = (e) => {
     this.props.changeValue(e.target.value);
   };
 
   render() {
+    const {onClickFilterStatus} = this.props;
     return (
       <div className="row justify-content-between">
         <div className="form-group col-12 col-sm-6 col-md-7 p-0">
@@ -16,8 +18,10 @@ export default class SearchBar extends Component {
             placeholder="Search worker by name..."/>
         </div>
         <SortByRole />  
-        <SortByStatus />     
+        <SortByStatus onClickFilterStatus={onClickFilterStatus} />     
       </div>      
     );
   }
 };
+
+export default SearchBar;

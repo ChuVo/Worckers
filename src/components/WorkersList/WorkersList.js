@@ -5,29 +5,25 @@ import styles from './WorkersList.module.css';
 class WorkersList extends React.Component {
 
   render () {
-    const { list, selectWorker } = this.props;
+    const { list, selectWorker, onClickSort, onClickSortAge } = this.props;
 
     return (
-      <div className='col-12 col-sm-8 col-md-9 p-0 pl-md-4 rounded'>
+      <div className='col-12 col-sm-8 col-md-9 p-0 pl-sm-4 rounded'>
         <table className="user-list table table-striped text-white">
           <thead>
           <tr className={styles.titles}>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Role</th>
+            <th className='cursor-hend' id='name' onClick={onClickSort} >Name</th>
+            <th className='cursor-hend' id='role' onClick={onClickSort}>Role</th>
+            <th className='cursor-hend' id='age' onClick={onClickSortAge}>age</th>
             <th>Phone</th>
           </tr>
           </thead>
           <tbody>
             { list.map(i => {
               return (
-                <Worker 
-                  id   = {i.id}
+                <Worker
                   key  = {i.id}
-                  name = {i.name}
-                  role = {i.role}
-                  list = {i}
-                  phone={i.phone}                
+                  list = {i}                
                   selectWorker={selectWorker}
                 />
               )})
