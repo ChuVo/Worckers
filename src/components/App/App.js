@@ -29,12 +29,10 @@ class App extends React.Component {
           checkedWorker: data[0]
         });
       }
-    })
+    });
   }
 
-  setList = (newList) => {
-    this.setState({ list: newList});
-  }
+  setList = (newList) => { this.setState({ list: newList }) }
 
   selectWorker = (event) => {
     this.setState({
@@ -73,9 +71,9 @@ class App extends React.Component {
   };
 
   onClickSortAge = () => {
-    const list = this.state.list.sort((a, b) => a.age > b.age ? 1 : -1);
+    const newlist = this.state.list.sort((a, b) => a.age > b.age ? 1 : -1);
 
-    this.setState({ list: list });
+    this.setList(newlist);
   }
 
   onClickFilterStatus = () => {
@@ -89,6 +87,27 @@ class App extends React.Component {
     this.setState({ showArchive: !this.state.showArchive });
   }
 
+  onClickFilterRole = () => {
+    GetData().then(data => { this.setState({
+                              list: data,
+                              isLoading: true
+                             });
+      this.filterByRole();
+    });
+  }
+
+  filterByRole = function () {
+    const selector = document.getElementById('inlineFormCustomSelectPref'),
+          selectedRole = selector.value;
+
+    let newList = [];
+
+    if (selectedRole === 'all') { newList = this.state.list }
+    else { newList = this.state.list.filter(i => { if (i.role === selectedRole) return i }) }
+
+    this.setList(newList);
+  }
+
   render () {
 
     return (
@@ -96,7 +115,10 @@ class App extends React.Component {
         <Header />
         <div className="container content p-4">
           <div className="col-12 mb-4">
-            <SearchBar onClickFilterStatus={this.onClickFilterStatus} />
+            <SearchBar
+              onClickFilterStatus={this.onClickFilterStatus}
+              onClickFilterRole={this.onClickFilterRole}
+            />
           </div>
           <div className='col-12 row m-0 p-0'>
             <SelectedWorker list={this.state.list}  checkedWorker={this.state.checkedWorker}/>
