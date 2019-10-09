@@ -77,14 +77,14 @@ class App extends React.Component {
   }
 
   onClickFilterStatus = () => {
-    if (this.state.showArchive !== true) {
-      let newList = this.state.list.filter(i => {
-        if (i.isArchive === true) { return i }
-      });
-      this.setList(newList);
-    } else this.getListWorkers();
+    // if (this.state.showArchive !== true) {
+    //   let newList = this.state.list.filter(i => {
+    //     if (i.isArchive === true) { return i }
+    //   });
+    //   this.setList(newList);
+    // } else this.getListWorkers();
 
-    this.setState({ showArchive: !this.state.showArchive });
+    // this.setState({ showArchive: !this.state.showArchive });
   }
 
   onClickFilterRole = () => {
@@ -101,9 +101,10 @@ class App extends React.Component {
           selectedRole = selector.value;
 
     let newList = [];
+    console.log('j;j;');
 
     if (selectedRole === 'all') { newList = this.state.list }
-    else { newList = this.state.list.filter(i => { if (i.role === selectedRole) return i }) }
+    // else { newList = this.state.list.filter(i => { if (i.role === selectedRole) return i }) }
 
     this.setList(newList);
   }
