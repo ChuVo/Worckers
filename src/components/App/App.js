@@ -73,7 +73,6 @@ class App extends React.Component {
 
   onFilterByStatus = () => {
     if (this.state.showArchive !== true) {
-      // let newList = this.state.list.filter(i => { if (i.isArchive === true) { return i } });
       let newList = this.state.list.filter(i => { return i.isArchive });
       this.setList(newList);
     } else this.getListWorkers();
@@ -131,7 +130,10 @@ class App extends React.Component {
             />
           </div>
           <div className='col-12 row m-0 p-0'>
-            <SelectedWorker list={this.state.list}  checkedWorker={this.state.checkedWorker}/>
+            <SelectedWorker
+              list={this.state.list}
+              checkedWorker={this.state.checkedWorker}
+            />
             <WorkersList
               list={this.state.list}
               selectWorker={this.selectWorker}
