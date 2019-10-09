@@ -1,4 +1,4 @@
-function GetData() {
+async function GetData() {
 let data = fetch('db.json')
     .then(response => {
       if (response.status !== 200) {
@@ -8,7 +8,8 @@ let data = fetch('db.json')
       } else return response.json().then(data => { return data });      
     }).catch(function(err) {
       console.log('Fetch Error :-S', err);
-      return false
+      
+      return false;
     });
   return data;
 }

@@ -2,10 +2,10 @@ import React from 'react';
 import Worker from '../Worker/Worker';
 import styles from './WorkersList.module.css';
 
-class WorkersList extends React.Component {
+class WorkersList extends React.Component { 
 
   render () {
-    const { list, selectWorker, onClickSort, onClickSortAge } = this.props;
+    const { list, selectWorker, onClickSort, onClickSortAge } = this.props;   
 
     return (
       <div className='col-12 col-sm-8 col-md-9 p-0 pl-sm-4 rounded'>
