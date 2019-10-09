@@ -4,14 +4,14 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ChuVo/Workers.git"
+    "url": "https://github.com/ChuVo/Workers.git"
   },
   "author": "https://github.com/ChuVo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ChuVo/Workers/issues"
+    "url": "https://github.com/ChuVo"
   },
-  "homepage": "https://chuvo.github.io",
+  "homepage": "https://chuvo.github.io/Workers",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
