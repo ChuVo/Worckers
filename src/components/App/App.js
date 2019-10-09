@@ -10,15 +10,14 @@ class App extends React.Component {
   state = {
     list: [],
     sortUp: false,
+    request: '',
     isLoading: false,
-    searchValue: '',
     checkedWorker: 0,
     showArchive: false
   }
 
-  componentDidMount() {
-    this.getListWorkers();
-  }
+  componentDidMount() { this.getListWorkers(); }
+  setList = (newList) => { this.setState({ list: newList }) }
 
   getListWorkers = () => {
     GetData().then(data => {
@@ -32,12 +31,8 @@ class App extends React.Component {
     });
   }
 
-  setList = (newList) => { this.setState({ list: newList }) }
-
   selectWorker = (event) => {
-    this.setState({
-      checkedWorker: event.currentTarget.id - 1
-    })
+    this.setState({ checkedWorker: event.currentTarget.id - 1 })
   }
 
   onClickSort = (e) => {
@@ -76,37 +71,49 @@ class App extends React.Component {
     this.setList(newlist);
   }
 
-  onClickFilterStatus = () => {
-    // if (this.state.showArchive !== true) {
-    //   let newList = this.state.list.filter(i => {
-    //     if (i.isArchive === true) { return i }
-    //   });
-    //   this.setList(newList);
-    // } else this.getListWorkers();
+  onFilterByStatus = () => {
+    if (this.state.showArchive !== true) {
+      // let newList = this.state.list.filter(i => { if (i.isArchive === true) { return i } });
+      let newList = this.state.list.filter(i => { return i.isArchive });
+      this.setList(newList);
+    } else this.getListWorkers();
 
-    // this.setState({ showArchive: !this.state.showArchive });
+    this.setState({ showArchive: !this.state.showArchive });
   }
 
-  onClickFilterRole = () => {
-    GetData().then(data => { this.setState({
-                              list: data,
-                              isLoading: true
-                             });
-      this.filterByRole();
+  onFilterByRole = () => { this.filterRequest(this.filterByRole) };
+  onFilterByName = () => { this.filterRequest(this.filterByName) };
+
+  filterRequest = (callback) => {
+    GetData().then(data => { 
+      this.setList(data);
+      callback();
     });
   }
 
-  filterByRole = function () {
+  filterByRole = () => {
+    let list = [];
+
     const selector = document.getElementById('inlineFormCustomSelectPref'),
           selectedRole = selector.value;
 
-    let newList = [];
-    console.log('j;j;');
+    if (selectedRole === 'all') { list = this.state.list }
+    else { list = this.state.list.filter(i => { if (i.role === selectedRole) return i }) }
 
-    if (selectedRole === 'all') { newList = this.state.list }
-    // else { newList = this.state.list.filter(i => { if (i.role === selectedRole) return i }) }
+    this.setList(list);
+  }
 
-    this.setList(newList);
+  filterByName = () => {
+    const search = document.getElementById('search'),
+          value = search.value.toLowerCase();    
+
+    let list = this.state.list.filter(
+      worker => { return worker.name.toLowerCase().includes(value) }
+    )
+    this.setState({
+      list: list,
+      request: value
+    });
   }
 
   render () {
@@ -117,8 +124,10 @@ class App extends React.Component {
         <div className="container content p-4">
           <div className="col-12 mb-4">
             <SearchBar
-              onClickFilterStatus={this.onClickFilterStatus}
-              onClickFilterRole={this.onClickFilterRole}
+              request={this.request}
+              onFilterByName={this.onFilterByName}
+              onFilterByStatus={this.onFilterByStatus}
+              onFilterByRole={this.onFilterByRole}
             />
           </div>
           <div className='col-12 row m-0 p-0'>

@@ -2,11 +2,11 @@ import React from 'react';
 
 class SortByRole extends React.Component {
   render() {
-    const { onClickFilterRole } = this.props;
+    const { onFilterByRole } = this.props;
 
     return (
       <div  className='col-7 col-sm-3 col-md-2 p-0'>
-        <select className="custom-select" id="inlineFormCustomSelectPref" onChange={onClickFilterRole}>
+        <select className="custom-select" id="inlineFormCustomSelectPref" onChange={onFilterByRole}>
           <option value="all" defaultValue>All...</option>
           <option value="driver">Deriver</option>
           <option value="waiter">Waiter</option>
