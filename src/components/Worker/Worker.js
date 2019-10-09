@@ -21,10 +21,10 @@ class Worker extends React.Component {
 
     return (
       <tr className={isArchive}  onClick={ selectWorker } id={list.id}>      
-        <td className='border-0 p-1'>{list.name}</td>
-        <td className='border-0 p-1'>{list.role}</td>
-        <td className='border-0 p-1'>{age()}</td>
-        <td className='border-0 p-1'>{list.phone}</td>
+        <td className='border-0 p-2'>{list.name}</td>
+        <td className='border-0 p-2'>{list.role}</td>
+        <td className='border-0 p-2'>{age()}</td>
+        <td className='border-0 p-2'>{list.phone}</td>
       </tr>
     );
   }

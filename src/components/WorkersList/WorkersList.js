@@ -9,12 +9,12 @@ class WorkersList extends React.Component {
 
     return (
       <div className='col-12 col-sm-8 col-md-9 p-0 pl-sm-4 rounded'>
-        <table className="user-list table table-striped text-white">
+        <table className="tilles table table-striped">
           <thead>
           <tr className={styles.titles}>
-            <th className='cursor-hend' id='name' onClick={onClickSort} >Name</th>
-            <th className='cursor-hend' id='role' onClick={onClickSort}>Role</th>
-            <th className='cursor-hend' id='age' onClick={onClickSortAge}>age</th>
+            <th className='tr-full cursor-hend' id='name' onClick={onClickSort}>Name</th>
+            <th className='tr-full cursor-hend' id='role' onClick={onClickSort}>Role</th>
+            <th className='tr-full cursor-hend' id='age' onClick={onClickSortAge}>Age</th>
             <th>Phone</th>
           </tr>
           </thead>

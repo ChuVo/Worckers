@@ -32,6 +32,10 @@ code {
   width: 100%;
 }
 
+.table {
+  color: #fff;
+}
+
 .selected-worker-fixed {
   position: fixed;
 }
@@ -58,5 +62,22 @@ code {
 
   .wrapper-img {
     display: none;
+  }
+}
+
+.tr-full:hover {
+  transition: .3s;
+  background: rgba(187, 186, 189, 0.91);
+  color: black;
+}
+
+@media (max-width: 768px ) {
+  .titles {
+    display: flex;
+    width: 100%;
+  }
+
+  .tr-full {
+    width: 100%;
   }
 }
